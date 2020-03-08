@@ -1,0 +1,49 @@
+package edu.uaic.ReadersClubAPI.services;
+
+import edu.uaic.ReadersClubAPI.models.Authorization;
+import edu.uaic.ReadersClubAPI.repository.AuthorizationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Random;
+
+@Service
+public class AuthService {
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    AuthorizationRepository authorizationRepository;
+
+    public String generateAuthToken() {
+        var SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        var salt = new StringBuilder();
+        var rnd = new Random();
+        while (salt.length() < 18) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        var saltStr = salt.toString();
+        return saltStr;
+    }
+
+    public String login(String email, String password) {
+        var user = userService.getUserByEmail(email);
+        if (user != null && user.getEmail().equals(email) && user.getPassword().equals(password)) {
+            var authUser = authorizationRepository.getAuthForEmail(email);
+            if (authUser.isPresent()) {
+                return authUser.get().getAuthToken();
+            } else {
+                var authorization = authorizationRepository.save(new Authorization(generateAuthToken(), user));
+                return authorization.getAuthToken();
+            }
+        }
+        else {
+            return "invalid credentials";
+        }
+    }
+
+
+
+}

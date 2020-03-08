@@ -1,6 +1,6 @@
 package edu.uaic.ReadersClubAPI.controllers;
 
-import edu.uaic.ReadersClubAPI.models.User;
+import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +14,17 @@ public class UserController {
     UserService userService;
 
     @PostMapping("user")
-    User postUser(@RequestBody User userToAdd) {
+    UserModel postUser(@RequestBody UserModel userToAdd) {
         return userService.saveUser(userToAdd);
     }
 
     @GetMapping("user/{id}")
-    User getUser(@PathVariable Long id) {
+    UserModel getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
     @GetMapping("user/all")
-    List<User> getAllUsers() {
+    List<UserModel> getAllUsers() {
         return userService.getAllUsers();
     }
 }

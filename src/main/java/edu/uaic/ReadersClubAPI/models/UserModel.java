@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="users")
-public class User {
+public class UserModel {
 
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     private String firstName;
@@ -15,5 +15,5 @@ public class User {
     private String email;
     private String password;
 
-    User() {}
+    UserModel() {}
 }
