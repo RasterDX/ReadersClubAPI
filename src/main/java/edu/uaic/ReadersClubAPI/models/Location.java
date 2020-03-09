@@ -14,8 +14,18 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     private String name;
-    private Double xCoord;
-    private Double yCoord;
+    private Double longitude;
+    private Double latitude;
+    @Column(nullable = true)
     private String description;
+    @Column(nullable = true)
     private String userInterest;
+
+    public Location(String name, Double longitude, Double latitude) {
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    Location()  {}
 }
