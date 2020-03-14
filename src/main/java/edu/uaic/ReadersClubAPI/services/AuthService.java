@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+
 @Service
 public class AuthService {
 
@@ -24,8 +25,7 @@ public class AuthService {
             int index = (int) (rnd.nextFloat() * SALTCHARS.length());
             salt.append(SALTCHARS.charAt(index));
         }
-        var saltStr = salt.toString();
-        return saltStr;
+        return salt.toString();
     }
 
     public String login(String email, String password) {

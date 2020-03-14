@@ -31,10 +31,11 @@ public class LocationController {
     }
 
     @GetMapping("locations")
-    public List<Location> getInterestPoints(@RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude) {
+    public List<Location> getInterestPoints(@RequestParam("longitude") Double longitude,
+                                            @RequestParam("latitude") Double latitude) {
         List<Location> locationList = locationRepository.findAll();
-        List<Location> resultList = new ArrayList();
-        for (var location : locationList) {
+        List<Location> resultList = new ArrayList<>();
+        for (Location location : locationList) {
             if (locationService.calculateDistance(location.getLongitude(), longitude, location.getLatitude(), latitude) <= 3) {
                 resultList.add(location);
             }
