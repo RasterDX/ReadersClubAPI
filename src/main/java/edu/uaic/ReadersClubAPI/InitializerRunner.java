@@ -61,15 +61,15 @@ class InitilizerRunner implements CommandLineRunner {
 
     private void addLocationsTest() {
         List<Location> locationList = new ArrayList<>();
-        locationList.add(new Location("Palatul Culturii", 27.586961, 47.157484));
-        locationList.add(new Location("Opera Nationala", 27.5846, 47.1648));
-        locationList.add(new Location("Facultatea de Informatica Iasi", 27.5749, 47.1743));
-        locationList.add(new Location("Stadionul Emil Alexandrescu", 27.561220, 47.184661));
-        locationList.add(new Location("Parcul Expozitiei", 27.560447, 47.186580));
-        locationList.add(new Location("Intrare Gradina Botanica", 27.557635, 47.186579));
-        locationList.add(new Location("Statuia Ecvestra a lui Mihai Viteazu", 27.562877, 47.186462));
-        locationList.add(new Location("Parcul Copou", 27.567240, 47.179334));
-        locationList.add(new Location("Teiul lui Eminescu", 27.566720, 47.178433));
+        locationList.add(new Location("Palatul Culturii", 27.586961, 47.157484, "https://lh5.googleusercontent.com/p/AF1QipOetoBmZbNUbPlXnVtAIOX4AtDWC1bT3C8vR-5F=w408-h306-k-no"));
+        locationList.add(new Location("Opera Nationala", 27.5846, 47.1648, "https://lh5.googleusercontent.com/p/AF1QipNlFRKhCV1bi58DsI0aVHdCMNB1vOpn1lCQ60nH=w408-h306-k-no"));
+        locationList.add(new Location("Facultatea de Informatica Iasi", 27.5749, 47.1743, "https://lh5.googleusercontent.com/p/AF1QipNaqXprrYIrDTIkCJJgAqVxtlOakSmrmuJbNVrV=w408-h306-k-no"));
+        locationList.add(new Location("Stadionul Emil Alexandrescu", 27.561220, 47.184661, "https://lh5.googleusercontent.com/p/AF1QipOrLTZGzhtPoz2WaknWXQ90Y0oSGc8qdfO-UDAE=w408-h306-k-no"));
+        locationList.add(new Location("Parcul Expozitiei", 27.560447, 47.186580, "https://lh5.googleusercontent.com/p/AF1QipN-VtS4jMDLRzZvGdv3l_rXa8tma7uy47pHCbIb=w408-h306-k-no"));
+        locationList.add(new Location("Intrare Gradina Botanica", 27.557635, 47.186579, "https://lh5.googleusercontent.com/p/AF1QipNsVDjI1vcd_c5q7zzwJUl9vycioqjgUdKqDx8U=w408-h544-k-no"));
+        locationList.add(new Location("Statuia Ecvestra a lui Mihai Viteazu", 27.562877, 47.186462, "https://lh5.googleusercontent.com/p/AF1QipMQXurS_WngaFQNvCcN5xksF5hg0VL0uEWaqXtk=w408-h272-k-no"));
+        locationList.add(new Location("Parcul Copou", 27.567240, 47.179334, "https://lh5.googleusercontent.com/p/AF1QipPuRLo-Chd0u1YxjZ51QiJD2DLsT391JmXjM2rP=w408-h306-k-no"));
+        locationList.add(new Location("Teiul lui Eminescu", 27.566720, 47.178433, "https://lh5.googleusercontent.com/p/AF1QipMmqz-aW3OMLYvRJf_lvlXW0tEtvTwSH9NSUFT_=w408-h544-k-no"));
         locationRepository.saveAll(locationList);
     }
 

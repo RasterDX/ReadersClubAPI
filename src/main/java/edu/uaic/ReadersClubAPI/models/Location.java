@@ -18,11 +18,20 @@ public class Location {
     private String description;
     @Column(nullable = true)
     private String userInterest;
+    @Column(nullable = true)
+    private String imageUrl;
 
     public Location(String name, Double longitude, Double latitude) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public Location(String name, Double longitude, Double latitude, String imageUrl) {
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.imageUrl = imageUrl;
     }
 
     Location()  {}
@@ -73,5 +82,13 @@ public class Location {
 
     public void setUserInterest(String userInterest) {
         this.userInterest = userInterest;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
