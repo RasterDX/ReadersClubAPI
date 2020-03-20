@@ -1,5 +1,6 @@
 package edu.uaic.ReadersClubAPI.controllers;
 
+import edu.uaic.ReadersClubAPI.models.BookModel;
 import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,16 @@ public class UserController {
     @GetMapping("user/all")
     List<UserModel> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @PostMapping("user/books")
+    void postBook(@RequestParam(name = "token") String token,
+                  @RequestParam(name = "bookId") Long bookId) {
+        userService.addBookToUser(token, bookId);
+    }
+
+    @GetMapping("user/books")
+    List<BookModel> getBooksReaded(@RequestParam(name = "token") String token) {
+        return userService.getBooksReadByUser(token);
     }
 }

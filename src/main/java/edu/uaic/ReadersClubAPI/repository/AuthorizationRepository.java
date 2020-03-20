@@ -14,4 +14,7 @@ public interface AuthorizationRepository extends JpaRepository<Authorization, Lo
 
     @Query("SELECT p FROM Authorization p where p.user.email = :email")
     public Optional<Authorization> getAuthForEmail(@Param("email") String email);
+
+    @Query("SELECT a from Authorization a where a.authToken = :token")
+    public Optional<Authorization> getAuthorizationByToken(String token);
 }

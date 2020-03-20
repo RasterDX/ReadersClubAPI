@@ -28,7 +28,7 @@ public class LocationController {
         locationList.add(new Location("Opera Nationala", 27.5846 , 47.1648));
         locationList.add(new Location("Facultatea de Informatica Iasi", 27.5749 , 47.1743));
         locationRepository.saveAll(locationList);
-    }
+}
 
     @GetMapping("locations")
     public List<Location> getInterestPoints(@RequestParam("longitude") Double longitude,

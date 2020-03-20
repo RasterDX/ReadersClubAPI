@@ -1,11 +1,9 @@
 package edu.uaic.ReadersClubAPI.models;
 
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Map;
 
-@Data
 @Entity
 @Table(name="location_mapper")
 public class Location {
@@ -28,4 +26,52 @@ public class Location {
     }
 
     Location()  {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUserInterest() {
+        return userInterest;
+    }
+
+    public void setUserInterest(String userInterest) {
+        this.userInterest = userInterest;
+    }
 }

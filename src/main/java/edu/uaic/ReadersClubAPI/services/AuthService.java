@@ -1,6 +1,7 @@
 package edu.uaic.ReadersClubAPI.services;
 
 import edu.uaic.ReadersClubAPI.models.Authorization;
+import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.repository.AuthorizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class AuthService {
         else {
             return "invalid credentials";
         }
+    }
+
+    public UserModel getUserWithToken(String token) {
+        Authorization auth = authorizationRepository.getAuthorizationByToken(token).get();
+        return auth.getUser();
     }
 
 

@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<BookModel, Long> {
 
-    @Query("SELECT b from BookModel b where b.id < :id")
+    @Query("SELECT b from BookModel b where b.id <= :id")
     List<BookModel> findFirstById(long id);
+
+
 
 }
