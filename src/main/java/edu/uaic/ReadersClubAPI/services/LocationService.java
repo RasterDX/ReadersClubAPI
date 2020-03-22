@@ -1,9 +1,20 @@
 package edu.uaic.ReadersClubAPI.services;
 
+import edu.uaic.ReadersClubAPI.models.Coordinates;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 
 @Service
 public class LocationService {
+
+    HashMap<String, Coordinates> locationMapping;
+
+    public final void addMapping(String authToken, Double xCoord, Double yCoord) {
+        var coordPair = new Coordinates(xCoord, yCoord);
+
+        this.locationMapping.put(authToken, coordPair);
+    }
 
     static final Integer R = 6371;
 

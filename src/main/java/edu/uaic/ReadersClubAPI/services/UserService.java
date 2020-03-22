@@ -30,8 +30,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserModel getUser(Long id) {
-        return userRepository.findById(id).orElseThrow();
+    public UserModel getUser(String token) {
+        return authService.getUserWithToken(token);
     }
 
     public UserModel getUserByEmail(String email) { return userRepository.findUserByEmail(email); }
