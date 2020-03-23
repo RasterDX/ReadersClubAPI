@@ -1,10 +1,12 @@
 package edu.uaic.ReadersClubAPI.services;
 
+import edu.uaic.ReadersClubAPI.dtos.UserDTO;
 import edu.uaic.ReadersClubAPI.models.Authorization;
 import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.repository.AuthorizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
 import java.util.Random;
 
@@ -45,11 +47,17 @@ public class AuthService {
         }
     }
 
-    public UserModel getUserWithToken(String token) {
+    public UserDTO getUserDTOForToken(String token) {
+        var modelMapper = new ModelMapper();
+        Authorization auth = authorizationRepository.getAuthorizationByToken(token).get();
+        return modelMapper.map(auth.getUser(), UserDTO.class);
+    }
+
+    public UserModel getUserModelForToken(String token) {
+        var modelMapper = new ModelMapper();
         Authorization auth = authorizationRepository.getAuthorizationByToken(token).get();
         return auth.getUser();
     }
-
 
 
 }

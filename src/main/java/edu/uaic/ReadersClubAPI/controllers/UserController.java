@@ -1,6 +1,8 @@
 package edu.uaic.ReadersClubAPI.controllers;
 
+import edu.uaic.ReadersClubAPI.dtos.UserDTO;
 import edu.uaic.ReadersClubAPI.models.BookModel;
+import edu.uaic.ReadersClubAPI.models.UserAndBooksPair;
 import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.services.LocationService;
 import edu.uaic.ReadersClubAPI.services.UserService;
@@ -25,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("user/{token}")
-    UserModel getUser(@PathVariable String token) {
+    UserDTO getUser(@PathVariable String token) {
         return userService.getUser(token);
     }
 
@@ -46,7 +48,12 @@ public class UserController {
     }
 
     @PostMapping("user/location")
-    void updateUserLocation(@RequestParam(name="authToken") String authtoken, @RequestParam(name = "xCoord") Double xCoord, @RequestParam(name="yCoord") Double yCoord) {
-        locationService.addMapping(authtoken, xCoord, yCoord);
+    void updateUserLocation(@RequestParam(name="authToken") String authtoken, @RequestParam(name = "latitude") Double latitude, @RequestParam(name="longitude") Double longitude) {
+        locationService.addMapping(authtoken, latitude, longitude);
+    }
+
+    @GetMapping("user/getmatches")
+    List<UserAndBooksPair> getMatchesForUser(@PathVariable(name="authToken") String token) {
+        return this.userService.getMatchesForUser(token);
     }
 }

@@ -25,7 +25,7 @@ public class UserModel {
     )
     private Set<BookModel> books;
 
-    UserModel() {}
+    public UserModel() {}
 
     public UserModel(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;

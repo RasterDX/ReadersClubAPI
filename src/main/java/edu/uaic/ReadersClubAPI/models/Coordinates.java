@@ -2,27 +2,27 @@ package edu.uaic.ReadersClubAPI.models;
 
 public class Coordinates {
 
-    private Double xCoord;
-    private Double yCoord;
+    private Double latitude;
+    private Double longitude;
 
-    public Coordinates(Double xCoord, Double yCoord) {
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+    public Coordinates(Double latitude, Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public Double getxCoord() {
-        return xCoord;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setxCoord(Double xCoord) {
-        this.xCoord = xCoord;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public Double getyCoord() {
-        return yCoord;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public void setyCoord(Double yCoord) {
-        this.yCoord = yCoord;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

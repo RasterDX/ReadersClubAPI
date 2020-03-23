@@ -10,8 +10,8 @@ public class LocationService {
 
     HashMap<String, Coordinates> locationMapping;
 
-    public final void addMapping(String authToken, Double xCoord, Double yCoord) {
-        var coordPair = new Coordinates(xCoord, yCoord);
+    public final void addMapping(String authToken, Double latitude, Double longitude) {
+        var coordPair = new Coordinates(latitude, longitude);
 
         this.locationMapping.put(authToken, coordPair);
     }
