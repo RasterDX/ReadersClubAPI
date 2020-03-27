@@ -12,6 +12,8 @@ public class UserDTO {
 
     private Set<BookModel> books;
 
+    public UserDTO() {}
+
     public UserDTO(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

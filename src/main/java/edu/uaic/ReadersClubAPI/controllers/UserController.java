@@ -48,12 +48,12 @@ public class UserController {
     }
 
     @PostMapping("user/location")
-    void updateUserLocation(@RequestParam(name="authToken") String authtoken, @RequestParam(name = "latitude") Double latitude, @RequestParam(name="longitude") Double longitude) {
+    void updateUserLocation(@RequestParam(name="token") String authtoken, @RequestParam(name = "latitude") Double latitude, @RequestParam(name="longitude") Double longitude) {
         locationService.addMapping(authtoken, latitude, longitude);
     }
 
     @GetMapping("user/getmatches")
-    List<UserAndBooksPair> getMatchesForUser(@PathVariable(name="authToken") String token) {
+    List<UserAndBooksPair> getMatchesForUser(@RequestParam(name = "token") String token) {
         return this.userService.getMatchesForUser(token);
     }
 }

@@ -57,6 +57,7 @@ class InitilizerRunner implements CommandLineRunner {
 
     private void addTestUser() {
         userRepository.save(new UserModel("Test", "Test", "test@email.com", "test"));
+        userRepository.save(new UserModel("Test1", "Test1", "test1@email.com", "test1"));
     }
 
     private void addLocationsTest() {

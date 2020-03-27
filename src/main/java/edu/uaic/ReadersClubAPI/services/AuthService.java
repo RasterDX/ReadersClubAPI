@@ -58,6 +58,4 @@ public class AuthService {
         Authorization auth = authorizationRepository.getAuthorizationByToken(token).get();
         return auth.getUser();
     }
-
-
 }

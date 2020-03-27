@@ -25,4 +25,16 @@ public class Coordinates {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    /**
+     * Used only for debugging purposes
+     * @return String representing coordinates
+     */
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

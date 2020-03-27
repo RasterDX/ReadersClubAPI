@@ -65,14 +65,14 @@ public class UserService {
                 var dist = locationService.calculateDistance(locationMapping.get(token).getLongitude(),
                         locationMapping.get(k).getLongitude(), locationMapping.get(token).getLatitude(),
                         locationMapping.get(k).getLatitude());
+                var coord = locationMapping.get(k);
                 var user = this.getUser(token);
                 var matchingUser = this.getUser(k);
                 var modelMapper = new ModelMapper();
                 if (dist <= 1 && !Collections.disjoint(user.getBooks(), matchingUser.getBooks())) {
                     matchingUsers.add(new UserAndBooksPair(modelMapper.map(matchingUser, UserDTO.class),
-                            matchingUser.getBooks()));
-                }
-            }
+                            matchingUser.getBooks(), coord));
+                }            }
 
         });
         return matchingUsers;

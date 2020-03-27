@@ -8,10 +8,12 @@ public class UserAndBooksPair {
 
     private UserDTO user;
     private Set<BookModel> books;
+    private Coordinates coordinates;
 
-    public UserAndBooksPair(UserDTO user, Set<BookModel> books) {
+    public UserAndBooksPair(UserDTO user, Set<BookModel> books, Coordinates coordinates) {
         this.user = user;
         this.books = books;
+        this.coordinates = coordinates;
     }
 
     public UserDTO getUser() {
@@ -28,5 +30,13 @@ public class UserAndBooksPair {
 
     public void setBooks(Set<BookModel> books) {
         this.books = books;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 }

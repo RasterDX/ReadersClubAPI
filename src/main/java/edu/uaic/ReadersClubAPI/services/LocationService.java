@@ -4,16 +4,27 @@ import edu.uaic.ReadersClubAPI.models.Coordinates;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class LocationService {
 
-    HashMap<String, Coordinates> locationMapping;
+    //Spring uses multithreading somewhere. Thread safe is required
+     Map<String, Coordinates> locationMapping = new ConcurrentHashMap<>();
 
     public final void addMapping(String authToken, Double latitude, Double longitude) {
         var coordPair = new Coordinates(latitude, longitude);
-
         this.locationMapping.put(authToken, coordPair);
+        printLocationMapping();
+    }
+
+    private void printLocationMapping() {
+        locationMapping.forEach((k, v) -> {
+            System.out.println(k + " " + v.toString());
+
+        });
+        System.out.println("--------------------------");
     }
 
     static final Integer R = 6371;
