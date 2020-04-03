@@ -45,6 +45,10 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
+    public UserModel getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow();
+    }
+
     public void addBookToUser(String token, Long bookId) {
         UserModel user = authService.getUserModelForToken(token);
         BookModel book = bookRepository.getOne(bookId);

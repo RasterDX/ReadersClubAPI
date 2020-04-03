@@ -1,7 +1,10 @@
 package edu.uaic.ReadersClubAPI.services;
 
 import edu.uaic.ReadersClubAPI.models.Coordinates;
-import org.springframework.stereotype.Service;
+import edu.uaic.ReadersClubAPI.models.Location;
+import edu.uaic.ReadersClubAPI.repository.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +15,12 @@ public class LocationService {
 
     //Spring uses multithreading somewhere. Thread safe is required
      Map<String, Coordinates> locationMapping = new ConcurrentHashMap<>();
+    @Autowired
+    LocationRepository locationRepository;
+
+    public Location getLocationById(Long locationId) {
+        return locationRepository.findById(locationId).orElseThrow();
+    }
 
     public final void addMapping(String authToken, Double latitude, Double longitude) {
         var coordPair = new Coordinates(latitude, longitude);

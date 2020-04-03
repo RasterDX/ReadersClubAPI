@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class UserDTO {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -15,6 +16,13 @@ public class UserDTO {
     public UserDTO() {}
 
     public UserDTO(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public UserDTO(Long id, String firstName, String lastName, String email, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -50,5 +58,13 @@ public class UserDTO {
 
     public void setBooks(Set<BookModel> books) {
         this.books = books;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

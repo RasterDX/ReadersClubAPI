@@ -16,5 +16,4 @@ public class ReadersClubApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ReadersClubApiApplication.class, args);
 	}
-
 }
