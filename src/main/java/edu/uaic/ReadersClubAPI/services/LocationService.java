@@ -1,12 +1,22 @@
 package edu.uaic.ReadersClubAPI.services;
 
 import edu.uaic.ReadersClubAPI.models.Coordinates;
+import edu.uaic.ReadersClubAPI.models.Location;
+import edu.uaic.ReadersClubAPI.repository.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
 @Service
 public class LocationService {
+
+    @Autowired
+    LocationRepository locationRepository;
+
+    public Location getLocationById(Long locationId) {
+        return locationRepository.findById(locationId).orElseThrow();
+    }
 
     HashMap<String, Coordinates> locationMapping;
 
