@@ -21,7 +21,7 @@ public class BookModel {
     private String author;
     private String coverUrl;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     List<Location> locations;
 
     @JsonIgnore
