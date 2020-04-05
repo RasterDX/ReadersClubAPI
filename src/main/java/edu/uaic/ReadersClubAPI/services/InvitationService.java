@@ -1,6 +1,7 @@
 package edu.uaic.ReadersClubAPI.services;
 
 import edu.uaic.ReadersClubAPI.models.Invitation;
+import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.repository.InvitationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -40,14 +41,11 @@ public class InvitationService {
                 });
     }
 
-
     public List<Invitation> getInvitationsByEmail(String email) {
         return invitationRepository.getInvitationByEmail(email);
     }
 
-    public Invitation createInvitation(Long senderId, Long receiverId, Long locationId, Long bookId, Date date, String message) {
-        var sender = userService.getUserById(senderId);
-        var receiver = userService.getUserById(receiverId);
+    public void createInvitation(UserModel sender, UserModel receiver, Long locationId, Long bookId, Date date, String message) {
         var book = bookService.getBookById(bookId);
         var location = locationService.getLocationById(locationId);
         var invitation = new Invitation();
@@ -57,7 +55,8 @@ public class InvitationService {
         invitation.setDateSent(java.sql.Date.valueOf(LocalDateTime.now().toLocalDate()));
         invitation.setMessage(message);
         invitation.setBook(book);
-        return invitationRepository.save(invitation);
+        invitation.setHasBeenAccepted(false);
+        invitationRepository.save(invitation);
     }
 
     public String acceptInvite(Long invitationId) {

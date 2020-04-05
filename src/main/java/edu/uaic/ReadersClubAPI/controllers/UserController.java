@@ -1,10 +1,13 @@
 package edu.uaic.ReadersClubAPI.controllers;
 
+import edu.uaic.ReadersClubAPI.dtos.MessageDto;
 import edu.uaic.ReadersClubAPI.dtos.UserDTO;
 import edu.uaic.ReadersClubAPI.models.*;
+import edu.uaic.ReadersClubAPI.services.AuthService;
 import edu.uaic.ReadersClubAPI.services.InvitationService;
 import edu.uaic.ReadersClubAPI.services.LocationService;
 import edu.uaic.ReadersClubAPI.services.UserService;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,9 @@ public class UserController {
 
     @Autowired
     LocationService locationService;
+
+    @Autowired
+    AuthService authService;
 
     @Autowired
     InvitationService invitationService;
@@ -61,29 +67,29 @@ public class UserController {
     }
 
     @PostMapping(value = "user/invite")
-    String inviteMatch(@RequestBody(required = true) InviteRequest inviteRequest) {
+    MessageDto inviteMatch(@RequestBody(required = true) InviteRequest inviteRequest) {
         try {
-            var sender = userService.getUserById(inviteRequest.senderId);
-            var receiver = userService.getUserById(inviteRequest.receiverId);
+            var sender = authService.getUserModelForToken(inviteRequest.authToken);
+            var receiver = userService.getUserByEmail(inviteRequest.receiverEmail);
             if (userService.getUser(inviteRequest.authToken).getEmail().equals(sender.getEmail())) {
                 if (userService.getMatchesForUser(inviteRequest.authToken).stream()
                         .anyMatch(m -> m.getUser().getEmail().equals(receiver.getEmail()))) {
-                    invitationService.createInvitation(inviteRequest.senderId, inviteRequest.receiverId, inviteRequest.locationId, inviteRequest.bookId, inviteRequest.date, inviteRequest.message);
+                    invitationService.createInvitation(sender, receiver, inviteRequest.locationId, inviteRequest.bookId, inviteRequest.date, inviteRequest.message);
                 } else {
-                    return "Cannot send invitation to user who is not a match.";
+                    return new MessageDto("Cannot send invitation to user who is not a match.");
                 }
             } else {
-                return "Illegal request.";
+                return new MessageDto("Illegal request.");
             }
 
         } catch (Exception e) {
-            return "Illegal request";
+            return new MessageDto("Illegal request.");
         }
-        return "Could not complete request.";
+        return new MessageDto("Could not complete request.");
     }
 
     @GetMapping("user/get-invitations/{email}")
-    List<Invitation> getInvitationForEmail(@PathVariable(value = "") String email) {
+    List<Invitation> getInvitationForEmail(@PathVariable(name = "email") String email) {
         return invitationService.getInvitationsByEmail(email);
     }
 

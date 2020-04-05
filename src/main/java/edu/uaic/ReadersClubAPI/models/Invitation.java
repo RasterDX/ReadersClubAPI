@@ -11,6 +11,7 @@ public class Invitation {
 
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+
     @OneToOne
     private UserModel sender;
     @OneToOne
@@ -27,6 +28,14 @@ public class Invitation {
     private Boolean hasBeenAccepted;
 
     public Invitation() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public UserModel getSender() {
         return sender;

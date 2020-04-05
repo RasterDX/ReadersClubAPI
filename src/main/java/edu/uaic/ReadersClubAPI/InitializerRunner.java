@@ -21,7 +21,7 @@ import java.util.List;
  *  Used to mock data
  */
 @Component
-class InitilizerRunner implements CommandLineRunner {
+class InitializerRunner implements CommandLineRunner {
 
 
     @Autowired
@@ -56,8 +56,9 @@ class InitilizerRunner implements CommandLineRunner {
 
 
     private void addTestUser() {
-        userRepository.save(new UserModel("Test", "Test", "test@email.com", "test"));
+        userRepository.save(new UserModel("Test3", "Test3", "test3@email.com", "test3"));
         userRepository.save(new UserModel("Test1", "Test1", "test1@email.com", "test1"));
+        userRepository.save(new UserModel("Test2", "Test2", "test2@email.com", "test2"));
     }
 
     private void addLocationsTest() {
