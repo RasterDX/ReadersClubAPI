@@ -54,4 +54,8 @@ public class LocationService {
     private Double toRad(Double value) {
         return value * Math.PI / 180;
     }
+
+    public Location addLocation(Location location) {
+        return this.locationRepository.save(location);
+    }
 }

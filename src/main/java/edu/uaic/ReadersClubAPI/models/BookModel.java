@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,9 @@ public class BookModel {
     private String title;
     private String author;
     private String coverUrl;
+
+    @OneToMany
+    List<Location> locations;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "books")
@@ -70,5 +74,13 @@ public class BookModel {
 
     public void setReaders(Set<UserModel> readers) {
         this.readers = readers;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 }

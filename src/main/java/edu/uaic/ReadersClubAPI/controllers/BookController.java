@@ -4,6 +4,8 @@ import edu.uaic.ReadersClubAPI.models.BookModel;
 import edu.uaic.ReadersClubAPI.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -28,6 +30,10 @@ public class BookController {
         bookRepository.saveAll(mockData);
     }
 
+    @PostMapping("books/add")
+    public BookModel addBook(@RequestBody BookModel book) {
+        return this.bookRepository.save(book);
+    }
 
     @GetMapping("books/featured")
     public List<BookModel> getFeaturedBooks() {

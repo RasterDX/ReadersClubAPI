@@ -20,8 +20,10 @@ public class Location {
     private String userInterest;
     @Column(nullable = true)
     private String imageUrl;
+    @ManyToOne
+    private BookModel book;
 
-    public Location(String name, Double longitude, Double latitude) {
+    public Location(String name, Double latitude, Double longitude) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -90,5 +92,13 @@ public class Location {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public BookModel getBook() {
+        return book;
+    }
+
+    public void setBook(BookModel book) {
+        this.book = book;
     }
 }
