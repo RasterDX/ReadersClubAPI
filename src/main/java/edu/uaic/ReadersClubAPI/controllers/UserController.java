@@ -86,4 +86,9 @@ public class UserController {
     List<Invitation> getInvitationForEmail(@PathVariable(value = "") String email) {
         return invitationService.getInvitationsByEmail(email);
     }
+
+    @GetMapping("user/accept-invite/{invitationId}")
+    public String acceptInvite(@PathVariable(name="invitationId") Long invitationId) {
+        return this.invitationService.acceptInvite(invitationId);
+    }
 }

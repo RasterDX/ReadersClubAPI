@@ -24,6 +24,8 @@ public class Invitation {
     @JoinColumn(name="book")
     private BookModel book;
 
+    private Boolean hasBeenAccepted;
+
     public Invitation() {}
 
     public UserModel getSender() {
@@ -80,5 +82,13 @@ public class Invitation {
 
     public void setBook(BookModel book) {
         this.book = book;
+    }
+
+    public Boolean getHasBeenAccepted() {
+        return hasBeenAccepted;
+    }
+
+    public void setHasBeenAccepted(Boolean hasBeenAccepted) {
+        this.hasBeenAccepted = hasBeenAccepted;
     }
 }

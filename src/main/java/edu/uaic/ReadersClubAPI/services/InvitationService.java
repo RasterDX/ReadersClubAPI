@@ -59,4 +59,14 @@ public class InvitationService {
         invitation.setBook(book);
         return invitationRepository.save(invitation);
     }
+
+    public String acceptInvite(Long invitationId) {
+        try {
+            var invitation = this.invitationRepository.findById(invitationId).orElseThrow();
+            invitation.setHasBeenAccepted(true);
+            return "Accepted invitation.";
+        } catch (Exception e) {
+            return "Invitation doesn't exist.";
+        }
+    }
 }
