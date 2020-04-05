@@ -28,6 +28,13 @@ public class BookModel {
     @ManyToMany(mappedBy = "books")
     private Set<UserModel> readers;
 
+    public BookModel(String title, String author, String coverUrl, List<Location> locations) {
+        this.title = title;
+        this.author = author;
+        this.coverUrl = coverUrl;
+        this.locations = locations;
+    }
+
     public BookModel(String title, String author, String coverUrl) {
         this.title = title;
         this.author = author;
