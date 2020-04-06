@@ -12,6 +12,9 @@ import java.util.List;
 public interface InvitationRepository extends JpaRepository<Invitation, Long> {
 
     @Query("SELECT i FROM Invitation i WHERE i.receiver.email = :email")
-    public List<Invitation> getInvitationByEmail(@Param("email") String email);
+    public List<Invitation> getRecInvitationsByEmail(@Param("email") String email);
+
+    @Query("SELECT i FROM Invitation i WHERE i.sender.email = :email")
+    public List<Invitation> getSentInvitationsByEmail(@Param("email") String email);
 
 }

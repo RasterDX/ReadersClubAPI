@@ -88,9 +88,14 @@ public class UserController {
         return new MessageDto("Could not complete request.");
     }
 
-    @GetMapping("user/get-invitations/{email}")
+    @GetMapping("user/get-rec-invitations/{email}")
+    List<Invitation> getRecInvitationForEmail(@PathVariable(name = "email") String email) {
+        return invitationService.getRecInvitationsByEmail(email);
+    }
+
+    @GetMapping("user/get-sent-invitations/{email}")
     List<Invitation> getInvitationForEmail(@PathVariable(name = "email") String email) {
-        return invitationService.getInvitationsByEmail(email);
+        return invitationService.getSentInvitationsByEmail(email);
     }
 
     @GetMapping("user/accept-invite/{invitationId}")
