@@ -2,6 +2,7 @@ package edu.uaic.ReadersClubAPI.controllers;
 
 import edu.uaic.ReadersClubAPI.models.BookModel;
 import edu.uaic.ReadersClubAPI.repository.BookRepository;
+import edu.uaic.ReadersClubAPI.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,9 @@ public class BookController {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    BookService bookService;
 
     @GetMapping("books/mock")
     public void mockBooks() {
@@ -32,7 +36,7 @@ public class BookController {
 
     @PostMapping("books/add")
     public BookModel addBook(@RequestBody BookModel book) {
-        return this.bookRepository.save(book);
+        return this.bookService.addBook(book);
     }
 
     @GetMapping("books/featured")

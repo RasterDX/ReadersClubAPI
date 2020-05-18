@@ -35,9 +35,7 @@ class InitializerRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        addTestUser();
-        addTestBooks();
-        addLocationsTest();
+
         System.out.println("INITIALIZATION DONE");
     }
 

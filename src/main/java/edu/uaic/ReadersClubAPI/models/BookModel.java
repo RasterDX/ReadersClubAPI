@@ -22,7 +22,11 @@ public class BookModel {
     private String coverUrl;
 
     @OneToMany(cascade=CascadeType.ALL)
+    @JsonIgnoreProperties("book")
     List<Location> locations;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    TextModel textModel;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "books")
@@ -42,6 +46,14 @@ public class BookModel {
     }
 
     public BookModel() {}
+
+    public TextModel getTextModel() {
+        return textModel;
+    }
+
+    public void setTextModel(TextModel textModel) {
+        this.textModel = textModel;
+    }
 
     public Long getId() {
         return id;

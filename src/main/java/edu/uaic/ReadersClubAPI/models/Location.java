@@ -1,6 +1,8 @@
 package edu.uaic.ReadersClubAPI.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Map;
 
@@ -21,7 +23,15 @@ public class Location {
     @Column(nullable = true)
     private String imageUrl;
     @ManyToOne
+    @JsonIgnoreProperties("locations")
     private BookModel book;
+
+    public Location(BookModel book, String name, Double latitude, Double longitude) {
+        this.book = book;
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
     public Location(String name, Double latitude, Double longitude) {
         this.name = name;
