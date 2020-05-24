@@ -2,8 +2,10 @@ package edu.uaic.ReadersClubAPI.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import edu.uaic.ReadersClubAPI.dtos.UserDTO;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -25,6 +27,16 @@ public class Location {
     @ManyToOne
     @JsonIgnoreProperties("locations")
     private BookModel book;
+    @OneToMany
+    private List<UserModel> usersWhoVisited;
+
+    public List<UserModel> getUsersWhoVisited() {
+        return usersWhoVisited;
+    }
+
+    public void setUsersWhoVisited(List<UserModel> usersWhoVisited) {
+        this.usersWhoVisited = usersWhoVisited;
+    }
 
     public Location(BookModel book, String name, Double latitude, Double longitude) {
         this.book = book;

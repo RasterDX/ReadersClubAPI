@@ -18,6 +18,9 @@ public class LocationService {
     @Autowired
     LocationRepository locationRepository;
 
+    @Autowired
+    AuthService authService;
+
     public Location getLocationById(Long locationId) {
         return locationRepository.findById(locationId).orElseThrow();
     }
@@ -25,6 +28,12 @@ public class LocationService {
     public final void addMapping(String authToken, Double latitude, Double longitude) {
         var coordPair = new Coordinates(latitude, longitude);
         this.locationMapping.put(authToken, coordPair);
+        for (var location : this.locationRepository.findAll()) {
+            if (this.calculateDistance(longitude, location.getLongitude(), latitude, location.getLatitude()) <= 0.5) {
+                location.getUsersWhoVisited().add(authService.getUserModelForToken(authToken));
+                locationRepository.save(location);
+            }
+        }
         printLocationMapping();
     }
 
