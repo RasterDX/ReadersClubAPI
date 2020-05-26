@@ -16,6 +16,7 @@ public class UserModel {
     private String email;
     private String password;
 
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(

@@ -27,7 +27,9 @@ public class Location {
     @ManyToOne
     @JsonIgnoreProperties("locations")
     private BookModel book;
-    @OneToMany
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("books")
     private List<UserModel> usersWhoVisited;
 
     public List<UserModel> getUsersWhoVisited() {

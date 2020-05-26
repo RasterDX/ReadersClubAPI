@@ -2,6 +2,7 @@ package edu.uaic.ReadersClubAPI.services;
 
 import edu.uaic.ReadersClubAPI.models.Coordinates;
 import edu.uaic.ReadersClubAPI.models.Location;
+import edu.uaic.ReadersClubAPI.models.UserModel;
 import edu.uaic.ReadersClubAPI.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Service;
@@ -30,8 +31,17 @@ public class LocationService {
         this.locationMapping.put(authToken, coordPair);
         for (var location : this.locationRepository.findAll()) {
             if (this.calculateDistance(longitude, location.getLongitude(), latitude, location.getLatitude()) <= 0.5) {
-                location.getUsersWhoVisited().add(authService.getUserModelForToken(authToken));
-                locationRepository.save(location);
+                UserModel user = authService.getUserModelForToken(authToken);
+                if (!location.getUsersWhoVisited().contains(user)) {
+                    location.getUsersWhoVisited().add(user);
+                    try {
+                        locationRepository.save(location);
+                    } catch (Exception ignored) {
+
+                    }
+
+                }
+
             }
         }
         printLocationMapping();
